@@ -92,18 +92,19 @@ nav {
 .nav-links a::after {
   content: ''; position: absolute; bottom:-4px; left:0; right:0;
   height: 1px; background: var(--sun);
-  transform: scaleX(0); transition: transform 0.3s;
+  transform: scaleX(0); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: right;
 }
 .nav-links a:hover { color: var(--sun); }
-.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 
 .nav-cta {
   background: linear-gradient(135deg, #F5A623, #E8920A);
   color: #000 !important; padding: 8px 20px !important;
   border-radius: 4px; font-weight: 700 !important;
-  transition: box-shadow 0.3s, transform 0.2s !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
-.nav-cta:hover { box-shadow: 0 4px 20px rgba(245,166,35,0.5); transform: translateY(-1px); }
+.nav-cta:hover { box-shadow: 0 4px 15px rgba(245,166,35,0.3); transform: translateY(-2px); }
 .nav-cta::after { display: none !important; }
 
 .hamburger {
@@ -219,9 +220,9 @@ nav {
   color: #000; font-weight: 700; font-size: 0.9rem;
   padding: 14px 30px; border-radius: 6px;
   text-decoration: none; letter-spacing: 0.5px;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-primary:hover { box-shadow: 0 8px 30px rgba(245,166,35,0.5); transform: translateY(-2px); }
+.btn-primary:hover { box-shadow: 0 6px 20px rgba(245,166,35,0.3); transform: translateY(-2px); }
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -229,9 +230,9 @@ nav {
   font-weight: 600; font-size: 0.9rem;
   padding: 14px 30px; border-radius: 6px;
   text-decoration: none; letter-spacing: 0.5px;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-secondary:hover { background: rgba(0,180,216,0.1); border-color: var(--electric); transform: translateY(-2px); }
+.btn-secondary:hover { background: rgba(0,180,216,0.05); border-color: rgba(0,180,216,0.8); transform: translateY(-2px); }
 
 .hero-stats {
   display: flex; gap: 3rem; margin-top: 3.5rem;
@@ -389,7 +390,7 @@ section { padding: 5rem 5%; }
   border-radius: 12px;
   padding: 2rem;
   position: relative; overflow: hidden;
-  transition: all 0.4s;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
 .service-card::before {
@@ -397,16 +398,18 @@ section { padding: 5rem 5%; }
   position: absolute; top:0; left:0; right:0; height: 3px;
   background: linear-gradient(90deg, var(--solar-light), var(--electric));
   transform: scaleX(0); transform-origin: left;
-  transition: transform 0.4s;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.service-card:hover { transform: translateY(-6px); border-color: rgba(0,180,216,0.4); box-shadow: var(--glow-blue); }
+.service-card:hover { transform: translateY(-3px); border-color: rgba(0,180,216,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px rgba(0,180,216,0.1); }
 .service-card:hover::before { transform: scaleX(1); }
 
 .service-icon-wrap {
   width: 56px; height: 56px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1.2rem;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.service-card:hover .service-icon-wrap { transform: scale(1.05); }
 .service-icon-wrap.solar-ic { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.25); }
 .service-icon-wrap.elec-ic { background: rgba(0,180,216,0.12); border: 1px solid rgba(0,180,216,0.25); }
 
@@ -484,15 +487,15 @@ section { padding: 5rem 5%; }
   border: 1px solid rgba(123,47,190,0.15);
   border-radius: 12px; padding: 1.8rem;
   position: relative; overflow: hidden;
-  transition: all 0.4s;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .product-card::after {
   content: '';
   position: absolute; inset:0;
   background: linear-gradient(135deg, rgba(123,47,190,0.05), transparent);
-  opacity: 0; transition: opacity 0.4s;
+  opacity: 0; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.product-card:hover { transform: translateY(-5px); border-color: rgba(123,47,190,0.4); box-shadow: 0 0 30px rgba(123,47,190,0.2); }
+.product-card:hover { transform: translateY(-3px); border-color: rgba(123,47,190,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px rgba(123,47,190,0.1); }
 .product-card:hover::after { opacity: 1; }
 
 .product-num {
@@ -502,7 +505,9 @@ section { padding: 5rem 5%; }
 }
 .product-icon {
   width: 52px; height: 52px; margin-bottom: 1.2rem;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.product-card:hover .product-icon { transform: scale(1.05); }
 .product-card h3 {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.1rem; font-weight: 700; margin-bottom: 0.7rem;
@@ -526,10 +531,11 @@ section { padding: 5rem 5%; }
   border-radius: 12px;
   background: rgba(255,255,255,0.02);
   text-align: center;
-  transition: all 0.4s;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.why-card:hover { border-color: rgba(245,166,35,0.3); background: rgba(245,166,35,0.04); transform: translateY(-4px); }
-.why-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+.why-card:hover { border-color: rgba(245,166,35,0.2); background: rgba(245,166,35,0.03); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.why-icon { font-size: 2.2rem; margin-bottom: 1rem; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; }
+.why-card:hover .why-icon { transform: scale(1.1) rotate(2deg); }
 .why-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
 .why-card p { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
 
@@ -550,14 +556,18 @@ section { padding: 5rem 5%; }
   border-radius: 12px; overflow: hidden;
   border: 1px solid var(--border);
   background: var(--card-bg);
-  transition: all 0.4s;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.project-card:hover { transform: translateY(-6px); box-shadow: var(--glow-blue); }
+.project-card:hover { transform: translateY(-3px); border-color: rgba(0,180,216,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px rgba(0,180,216,0.1); }
 
 .project-visual {
   height: 200px; position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
+.project-visual svg {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover .project-visual svg { transform: scale(1.05); }
 
 .project-body { padding: 1.5rem; }
 .project-cat {
@@ -648,9 +658,9 @@ section { padding: 5rem 5%; }
   color: #000; font-weight: 700; font-size: 0.95rem;
   border: none; border-radius: 8px; cursor: pointer;
   font-family: 'Exo 2', sans-serif; letter-spacing: 0.5px;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-submit:hover { box-shadow: 0 8px 30px rgba(245,166,35,0.4); transform: translateY(-2px); }
+.btn-submit:hover { box-shadow: 0 6px 20px rgba(245,166,35,0.3); transform: translateY(-2px); }
 
 /* ═══════════════════════════════
    FOOTER
@@ -676,9 +686,9 @@ footer {
   background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
   display: flex; align-items: center; justify-content: center;
   text-decoration: none; color: var(--text-dim); font-size: 0.85rem;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.social-btn:hover { background: rgba(245,166,35,0.15); border-color: rgba(245,166,35,0.3); color: var(--sun); }
+.social-btn:hover { background: rgba(245,166,35,0.1); border-color: rgba(245,166,35,0.3); color: var(--sun); transform: translateY(-2px); }
 
 .footer-col h4 {
   font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700;
@@ -791,272 +801,155 @@ footer {
   color: var(--sun-bright); letter-spacing: 1px;
   border-bottom: 1px solid rgba(46,204,113,0.2);
 }
-
-/* ══ PREMIUM UX ENHANCEMENTS ══ */
-:root {
-  --ease-out: cubic-bezier(0.16,1,0.3,1);
-  --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+/* ═══════════════════════════════
+   PROCESS / PRODUCT GUIDE (SCENE SWITCH)
+═══════════════════════════════ */
+#process {
+  background: var(--dark3); 
+  position: relative;
+  overflow: hidden;
 }
 
-/* Custom cursor */
-#cur-dot {
-  width:6px; height:6px; border-radius:50%;
-  background:#F5A623; position:fixed; top:0; left:0; z-index:9999;
-  pointer-events:none; transform:translate(-50%,-50%);
-  transition:background 0.2s, width 0.25s, height 0.25s;
-  will-change:left,top;
-}
-#cur-ring {
-  width:30px; height:30px; border-radius:50%;
-  border:1px solid rgba(245,166,35,0.35);
-  position:fixed; top:0; left:0; z-index:9998;
-  pointer-events:none; transform:translate(-50%,-50%);
-  transition:width 0.35s cubic-bezier(.34,1.56,.64,1),
-             height 0.35s cubic-bezier(.34,1.56,.64,1),
-             border-color 0.2s, background 0.2s;
-  will-change:left,top;
-}
-body.c-hover #cur-ring {
-  width:50px; height:50px;
-  border-color:rgba(245,166,35,0.55);
-  background:rgba(245,166,35,0.05);
-}
-body.c-link #cur-dot { background:#2ECC71; width:10px; height:10px; }
-
-/* Scene progress */
-#s-prog { position:fixed; top:0; left:0; right:0; height:2px; z-index:1100; background:rgba(255,255,255,0.05); }
-#s-prog-fill { height:100%; width:0%; background:linear-gradient(90deg,#1DB954,#F5A623,#00C8E8); transition:width 0.08s linear; }
-
-/* Scene nav dots */
-#s-nav { position:fixed; right:22px; top:50%; transform:translateY(-50%); z-index:900; display:flex; flex-direction:column; gap:10px; }
-.s-dot {
-  width:6px; height:6px; border-radius:50%;
-  background:rgba(255,255,255,0.2); cursor:pointer;
-  transition:all 0.4s cubic-bezier(.34,1.56,.64,1);
-  position:relative;
-}
-.s-dot::before {
-  content:attr(data-l); position:absolute; right:14px; top:50%; transform:translateY(-50%);
-  white-space:nowrap; font-size:0.6rem; color:rgba(255,255,255,0.4);
-  letter-spacing:2px; opacity:0; font-family:'Share Tech Mono',monospace;
-  text-transform:uppercase; transition:opacity 0.2s, color 0.2s;
-  pointer-events:none; background:rgba(7,12,24,0.85); padding:2px 8px; border-radius:3px;
-}
-.s-dot:hover::before { opacity:1; color:#F5A623; }
-.s-dot.active { background:#F5A623; width:8px; height:8px; box-shadow:0 0 12px rgba(245,166,35,0.7); }
-@media (max-width:768px) { #s-nav { display:none; } }
-
-/* Noise grain overlay */
-body::after {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:8000; opacity:0.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.process-wrapper {
+  display: flex; gap: 4rem;
+  margin-top: 3rem;
+  align-items: center;
 }
 
-/* ══ AMBIENT BLOBS ══ */
-.hero-ambient { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-.amb { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.1; animation:blobDrift 14s ease-in-out infinite alternate; }
-.amb1 { width:550px; height:550px; background:#1DB954; top:-150px; right:-100px; animation-delay:0s; }
-.amb2 { width:380px; height:380px; background:#00C8E8; bottom:-80px; left:-80px; animation-delay:-5s; }
-.amb3 { width:280px; height:280px; background:#F5A623; top:35%; left:38%; opacity:0.06; animation-delay:-9s; }
-@keyframes blobDrift { from{transform:translate(0,0) scale(1)} to{transform:translate(25px,-18px) scale(1.07)} }
-
-/* ══ REVEAL SYSTEM ══ */
-[data-r] { opacity:0; transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); }
-[data-r="up"]    { transform:translateY(38px); }
-[data-r="left"]  { transform:translateX(-35px); }
-[data-r="right"] { transform:translateX(35px); }
-[data-r="scale"] { transform:scale(0.93); }
-[data-r="tilt"]  { transform:perspective(900px) rotateX(10deg) translateY(25px); }
-[data-r].vis     { opacity:1; transform:none !important; }
-[data-d="1"] { transition-delay:0.09s; }
-[data-d="2"] { transition-delay:0.18s; }
-[data-d="3"] { transition-delay:0.27s; }
-[data-d="4"] { transition-delay:0.36s; }
-[data-d="5"] { transition-delay:0.45s; }
-[data-d="6"] { transition-delay:0.54s; }
-[data-d="7"] { transition-delay:0.63s; }
-
-/* ══ SCENE DIVIDER DOTS ══ */
-.s-divider { height:1px; margin:0 5%; background:linear-gradient(90deg,transparent,rgba(0,200,232,0.15),rgba(245,166,35,0.1),transparent); position:relative; }
-.s-divider::after { content:''; position:absolute; left:50%; top:-4px; width:8px; height:8px; border-radius:50%; background:#F5A623; transform:translateX(-50%); animation:divPulse 3s ease infinite; }
-@keyframes divPulse { 0%,100%{opacity:0.5;box-shadow:0 0 6px #F5A623} 50%{opacity:1;box-shadow:0 0 18px #F5A623} }
-
-/* ══ FLOATING HERO CARDS ══ */
-.fc { position:absolute; background:rgba(17,25,39,0.88); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:13px 16px; animation:float 7s ease-in-out infinite; }
-.fc1 { top:8%; left:0; animation-delay:0s; }
-.fc2 { top:38%; right:2%; animation-delay:-2.5s; }
-.fc3 { bottom:10%; left:12%; animation-delay:-5s; }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
-.fc-lbl { font-size:0.58rem; letter-spacing:2px; color:rgba(255,255,255,0.4); text-transform:uppercase; font-family:'Share Tech Mono',monospace; margin-bottom:4px; }
-.fc-val { font-family:'Rajdhani',sans-serif; font-size:1.35rem; font-weight:700; color:#F5A623; line-height:1; }
-.fc-sub { font-size:0.62rem; color:rgba(255,255,255,0.35); margin-top:3px; }
-.live-ind { display:flex; align-items:center; gap:5px; font-size:0.58rem; letter-spacing:2px; color:#1DB954; text-transform:uppercase; font-family:'Share Tech Mono',monospace; margin-top:3px; }
-.live-d { width:5px; height:5px; border-radius:50%; background:#1DB954; animation:pulse 1.5s infinite; }
-
-/* ══ LOGO SHIMMER ══ */
-.brand { animation:logoShimmer 4s ease infinite; background-size:200% !important; }
-@keyframes logoShimmer { 0%,100%{background-position:0%} 50%{background-position:100%} }
-
-/* ══ NAV UNDERLINE SLIDE ══ */
-.nav-links a { position:relative; }
-.nav-links a::after { content:''; position:absolute; bottom:-2px; left:50%; right:50%; height:1px; background:#F5A623; transition:left 0.3s cubic-bezier(0.16,1,0.3,1), right 0.3s cubic-bezier(0.16,1,0.3,1); }
-.nav-links a:hover::after, .nav-links a.nav-active::after { left:0; right:0; }
-.nav-links a:hover, .nav-links a.nav-active { color:#F5A623 !important; }
-
-/* ══ SERVICE CARD SPOTLIGHT ══ */
-.service-card { --mx:50%; --my:50%; }
-.service-card .spotlight {
-  position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(circle 180px at var(--mx) var(--my), rgba(46,204,113,0.08), transparent 70%);
-  opacity:0; transition:opacity 0.35s; border-radius:inherit;
+@media (max-width: 900px) {
+  .process-wrapper { flex-direction: column; gap: 3rem; }
 }
-.service-card:hover .spotlight { opacity:1; }
-.service-card { overflow:hidden; }
 
-/* ══ PRODUCT CARD HOVER ICON ══ */
-.product-icon { transition:transform 0.5s cubic-bezier(.34,1.56,.64,1), filter 0.3s; }
-.product-card:hover .product-icon { transform:scale(1.12) rotate(-6deg); filter:drop-shadow(0 0 10px rgba(124,58,237,0.5)); }
-.product-card h3 { transition:color 0.3s; }
-.product-card:hover h3 { color:#C77DFF; }
-
-/* ══ STEP LIST HOVER ══ */
-.step-item {
-  display:flex; gap:1.5rem; padding:1.6rem 0;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  cursor:default; counter-increment:step;
-  transition:padding-left 0.35s cubic-bezier(0.16,1,0.3,1);
-  position:relative;
+.process-steps {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 1.5rem;
 }
-.step-item::before {
-  content:counter(step,decimal-leading-zero);
-  font-family:'Share Tech Mono',monospace; font-size:0.62rem;
-  color:rgba(255,255,255,0.25); letter-spacing:2px;
-  flex-shrink:0; padding-top:4px; min-width:26px;
-  transition:color 0.3s;
+
+.proc-step {
+  display: flex; gap: 1.2rem;
+  padding: 1.5rem;
+  border: 1px solid transparent;
+  border-left: 2px solid rgba(255,255,255,0.05);
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
-.step-item:hover { padding-left:8px; }
-.step-item:hover::before { color:#F5A623; }
-.step-title { font-family:'Rajdhani',sans-serif; font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; transition:color 0.3s; }
-.step-item:hover .step-title { color:#F5A623; }
-.step-text { font-size:0.86rem; color:#8A9BB8; line-height:1.7; }
-
-/* ══ CERT CARDS HOVER ══ */
-.cert-card {
-  background:#141C2E; border:1px solid rgba(255,255,255,0.07);
-  border-radius:12px; padding:1.2rem 1.6rem;
-  display:flex; align-items:center; gap:1.1rem;
-  transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s, box-shadow 0.35s;
-  position:relative; overflow:hidden; cursor:default;
-  margin-bottom:0.9rem;
+.proc-step::before {
+  content: ''; position: absolute; left:-2px; top:0; bottom:0; width:2px;
+  background: linear-gradient(180deg, var(--sun-bright), var(--sun));
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.cert-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:#2ECC71; transform:scaleY(0); transform-origin:bottom; transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-.cert-card:hover { transform:translateX(7px); border-color:rgba(46,204,113,0.25); box-shadow:0 0 25px rgba(46,204,113,0.07); }
-.cert-card:hover::before { transform:scaleY(1); }
-.cert-ic { width:42px; height:42px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; background:rgba(46,204,113,0.1); border:1px solid rgba(46,204,113,0.2); transition:transform 0.4s cubic-bezier(.34,1.56,.64,1); }
-.cert-card:hover .cert-ic { transform:rotate(-10deg) scale(1.1); }
-.cert-name { font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:700; margin-bottom:2px; }
-.cert-desc { font-size:0.75rem; color:#5A6A82; }
+.proc-step:hover { background: rgba(255,255,255,0.02); }
 
-/* ══ CONTACT ITEM HOVER ══ */
-.contact-item {
-  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s;
-  padding:0.8rem; border-radius:10px;
-  border:1px solid transparent;
+.proc-step.active {
+  background: rgba(245,166,35,0.04);
+  border-color: rgba(245,166,35,0.1); border-left-color: transparent;
+  box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
 }
-.contact-item:hover { transform:translateX(6px); background:rgba(255,255,255,0.03); border-color:rgba(255,255,255,0.07); }
-.contact-dot { transition:transform 0.4s cubic-bezier(.34,1.56,.64,1), background 0.3s; }
-.contact-item:hover .contact-dot { transform:rotate(-10deg) scale(1.1); }
+.proc-step.active::before { transform: scaleY(1); }
 
-/* ══ FOOTER LINKS ══ */
-.footer-col a { transition:color 0.2s, padding-left 0.3s cubic-bezier(0.16,1,0.3,1); display:inline-block; }
-.footer-col a:hover { padding-left:5px; }
-.social-btn { transition:transform 0.35s cubic-bezier(.34,1.56,.64,1), background 0.3s, border-color 0.3s; }
-.social-btn:hover { transform:translateY(-4px) rotate(-6deg); }
-
-/* ══ WHY STEP ══ */
-.why-step { position:relative; transition:background 0.3s; }
-.why-step::after { content:''; position:absolute; bottom:0; left:1.5rem; right:1.5rem; height:2px; background:#F5A623; transform:scaleX(0); transform-origin:left; transition:transform 0.45s cubic-bezier(0.16,1,0.3,1); }
-.why-step:hover { background:rgba(255,255,255,0.025); }
-.why-step:hover::after { transform:scaleX(1); }
-.why-step .ws-icon { transition:transform 0.4s cubic-bezier(.34,1.56,.64,1); font-size:1.7rem; margin-bottom:0.7rem; }
-.why-step:hover .ws-icon { transform:scale(1.2) rotate(-5deg); }
-.ws-num { font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:rgba(255,255,255,0.25); letter-spacing:2px; margin-bottom:0.8rem; }
-.ws-title { font-family:'Rajdhani',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:0.5rem; }
-.ws-text { font-size:0.8rem; color:#8A9BB8; line-height:1.65; }
-
-/* ══ FORM INPUT FOCUS LINE ══ */
-.f-wrap { position:relative; }
-.f-line { position:absolute; bottom:0; left:0; height:1px; width:0; background:#00C8E8; transition:width 0.4s cubic-bezier(0.16,1,0.3,1); pointer-events:none; }
-.f-wrap:focus-within .f-line { width:100%; }
-.f-wrap label { display:block; font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:#5A6A82; margin-bottom:6px; font-family:'Share Tech Mono',monospace; transition:color 0.2s; }
-.f-wrap:focus-within label { color:#00C8E8; }
-
-/* ══ PROJECT FILTER ══ */
-.pf-btn {
-  padding:7px 16px; border-radius:5px; font-size:0.7rem; font-weight:600;
-  letter-spacing:1px; text-transform:uppercase;
-  border:1px solid rgba(255,255,255,0.08); color:#8A9BB8;
-  cursor:pointer; background:transparent; font-family:'Exo 2',sans-serif;
-  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+.proc-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.2rem; font-weight: 700;
+  color: rgba(255,255,255,0.2);
+  transition: color 0.4s;
 }
-.pf-btn:hover { border-color:rgba(255,255,255,0.2); color:#EDF2FF; }
-.pf-btn.active { background:#F5A623; border-color:#F5A623; color:#000; }
+.proc-step.active .proc-num { color: var(--sun); }
 
-/* ══ PROJECT CARD OVERLAY ══ */
-.proj-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.4s; }
-.project-card:hover .proj-overlay { opacity:1; }
-.proj-overlay-txt { font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:700; color:#fff; letter-spacing:2px; text-transform:uppercase; border:1px solid rgba(255,255,255,0.4); padding:5px 14px; border-radius:4px; transform:translateY(8px); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1); }
-.project-card:hover .proj-overlay-txt { transform:translateY(0); }
-
-/* ══ PERSPECTIVE FEATURE CARD ══ */
-.solar-showcase { perspective:1200px; }
-.solar-showcase-inner { transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s; }
-.solar-showcase-inner:hover { box-shadow:0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(46,204,113,0.15); }
-
-/* ══ LOGO HOVER ══ */
-.nav-logo img { transition:transform 0.5s cubic-bezier(.34,1.56,.64,1), filter 0.3s; filter:drop-shadow(0 0 8px rgba(29,185,84,0.3)); }
-.nav-logo:hover img { transform:rotate(-8deg) scale(1.1); filter:drop-shadow(0 0 14px rgba(29,185,84,0.6)); }
-
-/* ══ BUTTON MICRO ══ */
-.btn-primary, .btn-secondary {
-  position:relative; overflow:hidden;
+.proc-content h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;
+  color: var(--text-dim); transition: color 0.4s;
 }
-.btn-primary::after, .btn-secondary::after {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
-  opacity:0; transition:opacity 0.3s;
+.proc-step.active .proc-content h4 { color: var(--text); }
+.proc-content p {
+  font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-primary:hover::after, .btn-secondary:hover::after { opacity:1; }
-.btn-primary:hover { transform:translateY(-3px) !important; }
-.btn-secondary:hover { transform:translateY(-2px) !important; }
-.btn-primary:active, .btn-secondary:active { transform:translateY(-1px) !important; }
+.proc-step.active .proc-content p {
+  max-height: 100px; opacity: 1; margin-top: 0.5rem; color: var(--text-dim);
+}
 
-/* ══ MARQUEE PAUSE ══ */
-.marquee-wrap:hover .marquee-track { animation-play-state:paused; }
+/* 3D Perspective Viewer */
+.process-viewer {
+  flex: 1.2;
+  height: 480px;
+  display: flex; align-items: center; justify-content: center;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
 
-/* ══ AREA CHIPS ══ */
-.area-chip { transition:all 0.25s cubic-bezier(.34,1.56,.64,1); cursor:default; }
-.area-chip:hover { transform:scale(1.07) translateY(-2px); }
+.scene-stage {
+  width: 340px; height: 340px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(55deg) rotateZ(-40deg);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scene-stage:hover { transform: rotateX(50deg) rotateZ(-30deg); }
 
+.scene {
+  position: absolute; inset:0;
+  transform-style: preserve-3d;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.6s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(-80px) rotateY(10deg);
+}
+.scene.active {
+  opacity: 1; pointer-events: auto;
+  transform: translateZ(0) rotateY(0);
+}
+
+.scene-layer {
+  position: absolute; inset:0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+}
+.scene-layer.base-plate {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,180,216,0.2);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.5), -15px 15px 30px rgba(0,0,0,0.8);
+  transform: translateZ(0px);
+}
+.scene-layer.float-1 { transform: translateZ(40px); }
+.scene-layer.float-2 { transform: translateZ(80px); }
+.scene-layer.float-top { transform: translateZ(120px); }
+
+.scene-layer.text-overlay {
+  transform: translateZ(10px) translateX(-40px) translateY(140px) rotateX(-55deg) rotateY(-40deg);
+  font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;
+  letter-spacing: 2px; color: var(--electric);
+  text-transform: uppercase; white-space: nowrap;
+  opacity: 0; transition: opacity 0.8s 0.3s;
+}
+.scene.active .scene-layer.text-overlay { opacity: 1; }
+
+.scene-layer svg { width: 180px; height: 180px; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.5)); }
+
+.pulse-ring {
+  width: 140px; height: 140px; border-radius: 50%;
+  border: 2px solid rgba(46,204,113,0.5);
+  transform: translateZ(20px);
+  animation: radarPulse 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes radarPulse {
+  0% { transform: translateZ(20px) scale(0.8); opacity: 1; }
+  100% { transform: translateZ(20px) scale(1.6); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .process-viewer { height: 350px; }
+  .scene-stage { width: 260px; height: 260px; }
+  .scene-layer.text-overlay { transform: translateZ(10px) translateX(-50px) translateY(100px) rotateX(-55deg) rotateY(-40deg); }
+}
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
-
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
-<div id="s-prog"><div id="s-prog-fill"></div></div>
-<div id="s-nav">
-  <div class="s-dot active" data-l="Home"     onclick="sceneGo('home')"></div>
-  <div class="s-dot"        data-l="About"    onclick="sceneGo('about')"></div>
-  <div class="s-dot"        data-l="Energy"   onclick="sceneGo('energy')"></div>
-  <div class="s-dot"        data-l="Trading"  onclick="sceneGo('trading')"></div>
-  <div class="s-dot"        data-l="Projects" onclick="sceneGo('projects')"></div>
-  <div class="s-dot"        data-l="Why Us"   onclick="sceneGo('why')"></div>
-  <div class="s-dot"        data-l="Contact"  onclick="sceneGo('contact')"></div>
-</div>
-
 <div class="top-bar">
   ⚡ Trusted Solar & Electrical Solutions in Tamil Nadu &nbsp;|&nbsp; ISO Certified &nbsp;|&nbsp; 10+ Years of Excellence &nbsp;|&nbsp; Call: +91-9876543210
 </div>
@@ -1123,8 +1016,7 @@ body::after {
 
 <!-- ████ HERO ████ -->
 <section class="hero" id="home">
-  <div class="hero-ambient"><div class="amb amb1"></div><div class="amb amb2"></div><div class="amb amb3"></div></div>
-<div class="hero-bg"></div>
+  <div class="hero-bg"></div>
   <div class="hero-grid"></div>
 
   <!-- Animated sun/solar graphic -->
@@ -1199,28 +1091,11 @@ body::after {
   </div>
 </section>
 
-
-<div class="fc fc1">
-  <div class="fc-lbl">Today Output</div>
-  <div class="fc-val">842 kWh</div>
-  <div class="live-ind"><span class="live-d"></span>Live System</div>
-</div>
-<div class="fc fc2">
-  <div class="fc-lbl">CO₂ Saved</div>
-  <div class="fc-val" style="color:#1DB954">1.2 T</div>
-  <div class="fc-sub">This month</div>
-</div>
-<div class="fc fc3">
-  <div class="fc-lbl">System Health</div>
-  <div class="fc-val" style="color:#00C8E8">98.6%</div>
-  <div class="fc-sub">All systems nominal</div>
-</div>
-
 <!-- ████ ABOUT ████ -->
 <section id="about">
-  <div class="section-tag" data-r="up">About Sivayam Group</div>
+  <div class="section-tag">About Sivayam Group</div>
   <div class="about-grid">
-    <div class="about-visual" data-r="left">
+    <div class="about-visual reveal">
       <div class="about-card main">
         <!-- Solar factory SVG illustration -->
         <svg viewBox="0 0 400 280" style="width:100%;max-width:380px" fill="none">
@@ -1302,35 +1177,13 @@ body::after {
       </div>
     </div>
 
-    <div class="about-content" data-r="right">
-      <div class="section-tag" data-r="up">Who We Are</div>
+    <div class="about-content reveal">
+      <div class="section-tag">Who We Are</div>
       <h2 class="section-title">Built on <span class="accent">Trust</span> &amp;<br>Engineering <span class="accent2">Excellence</span></h2>
       <p>Sivayam Group operates through two powerful divisions delivering end-to-end energy solutions to industries, institutions, and commercial establishments across Tamil Nadu.</p>
       <p><strong style="color:var(--solar-light)">Sivayam Energy Controls</strong> specializes in solar rooftop &amp; ground-mounted installations, industrial electrical works, and structural solutions — turning sunlight into reliable, cost-saving power.</p>
       <p><strong style="color:var(--trading-light)">Sivayam Trading Corp</strong> supplies premium industrial electrical &amp; mechanical equipment — from servo stabilizers and online UPS systems to submersible pumps and industrial piping.</p>
-      
-<div class="step-list" style="counter-reset:step;margin-top:2rem;">
-  <div class="step-item">
-    <div class="step-body">
-      <div class="step-title">Sivayam Energy Controls</div>
-      <div class="step-text">Solar rooftop &amp; ground installations, industrial electrical and structural solutions — end-to-end turnkey EPC.</div>
-    </div>
-  </div>
-  <div class="step-item">
-    <div class="step-body">
-      <div class="step-title">Sivayam Trading Corp</div>
-      <div class="step-text">Authorized supply of stabilizers, UPS, VFDs, transformers, cables and pumps — quality equipment with full support.</div>
-    </div>
-  </div>
-  <div class="step-item">
-    <div class="step-body">
-      <div class="step-title">One Trusted Brand Since 2014</div>
-      <div class="step-text">Single-window solution — saving you coordination time, procurement overhead, and cost across both divisions.</div>
-    </div>
-  </div>
-</div>
-
-<div class="cert-badges">
+      <div class="cert-badges">
         <span class="badge">MNRE Certified</span>
         <span class="badge">TANGEDCO Approved</span>
         <span class="badge">ISO 9001:2015</span>
@@ -1342,11 +1195,9 @@ body::after {
 
 <div class="divider"></div>
 
-
-<div class="s-divider"></div>
 <!-- ████ ENERGY CONTROLS ████ -->
 <section id="energy">
-  <div class="division-header" data-r="up">
+  <div class="division-header reveal">
     <div class="division-icon green">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.2">
         <circle cx="12" cy="12" r="5"/>
@@ -1463,7 +1314,7 @@ body::after {
   </div>
 
   <!-- Solar showcase banner -->
-  <div class="solar-showcase" data-r="scale" style="perspective:1100px;" style="margin-top:3rem;">
+  <div class="solar-showcase reveal" style="margin-top:3rem;">
     <div class="solar-visual" style="background:linear-gradient(135deg,rgba(26,107,60,0.2),rgba(0,57,115,0.3));padding:2rem;">
       <svg viewBox="0 0 300 220" style="width:100%;max-width:300px" fill="none">
         <!-- Large solar array -->
@@ -1549,7 +1400,7 @@ body::after {
     <div class="solar-info">
       <h3>Solar Power — The Smarter Investment</h3>
       <p>With Tamil Nadu's exceptional solar irradiance of 5–6 kWh/m²/day, our turnkey solar solutions deliver exceptional ROI while dramatically reducing electricity costs.</p>
-      <div class="solar-kpis" data-r="up" data-d="3">
+      <div class="solar-kpis">
         <div class="kpi-item"><div class="kpi-val">25 Yrs</div><div class="kpi-label">Panel Warranty</div></div>
         <div class="kpi-item"><div class="kpi-val">3–5 Yrs</div><div class="kpi-label">Payback Period</div></div>
         <div class="kpi-item"><div class="kpi-val">80%</div><div class="kpi-label">Bill Reduction</div></div>
@@ -1561,11 +1412,9 @@ body::after {
 
 <div class="divider"></div>
 
-
-<div class="s-divider"></div>
 <!-- ████ TRADING CORP ████ -->
 <section id="trading">
-  <div class="division-header" data-r="up">
+  <div class="division-header reveal">
     <div class="division-icon purple-ic">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C77DFF" stroke-width="2">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -1729,22 +1578,13 @@ body::after {
 
 <div class="divider"></div>
 
-
-<div class="s-divider"></div>
 <!-- ████ PROJECTS ████ -->
 <section id="projects">
-  <div class="section-tag" data-r="up">Our Work</div>
-  <h2 class="section-title" data-r="up">Featured <span class="accent">Projects</span></h2>
-  <p class="section-sub" data-r="up" data-d="2">A snapshot of our completed projects across Tamil Nadu — delivering reliable energy solutions.</p>
+  <div class="section-tag">Our Work</div>
+  <h2 class="section-title reveal">Featured <span class="accent">Projects</span></h2>
+  <p class="section-sub reveal">A snapshot of our completed projects across Tamil Nadu — delivering reliable energy solutions.</p>
 
-  
-<div class="proj-filter" style="display:flex;gap:8px;margin-bottom:2rem;flex-wrap:wrap;">
-  <button class="pf-btn active" onclick="filterP('all',this)">All</button>
-  <button class="pf-btn" onclick="filterP('solar',this)">Solar</button>
-  <button class="pf-btn" onclick="filterP('electrical',this)">Electrical</button>
-  <button class="pf-btn" onclick="filterP('trading',this)">Equipment</button>
-</div>
-<div class="projects-grid" id="projGrid">
+  <div class="projects-grid">
 
     <div class="project-card reveal">
       <div class="project-visual" style="background:linear-gradient(135deg,#0a2a1a,#0d3d72);">
@@ -1871,45 +1711,106 @@ body::after {
 
 <div class="divider"></div>
 
+<!-- ████ PROCESS GUIDE ████ -->
+<section id="process">
+  <div class="section-tag">How We Work</div>
+  <h2 class="section-title reveal">Our <span class="accent">Process</span> &amp; Guide</h2>
+  <p class="section-sub reveal">A smooth, transparent journey from initial consultation to final commissioning and lifetime support.</p>
 
-<div class="s-divider"></div>
+  <div class="process-wrapper reveal">
+    <!-- Left: Steps Navigation -->
+    <div class="process-steps">
+      <div class="proc-step active" onclick="switchScene(1)">
+        <div class="proc-num">01</div>
+        <div class="proc-content">
+          <h4>Consultation &amp; Analysis</h4>
+          <p>We deeply analyze your power requirements, site feasibility, and energy bill patterns to propose the optimal capacity.</p>
+        </div>
+      </div>
+      <div class="proc-step" onclick="switchScene(2)">
+        <div class="proc-num">02</div>
+        <div class="proc-content">
+          <h4>System Design &amp; Engineering</h4>
+          <p>Our experts draft precision electrical schematics, 3D structural designs, and clear component specifications.</p>
+        </div>
+      </div>
+      <div class="proc-step" onclick="switchScene(3)">
+        <div class="proc-num">03</div>
+        <div class="proc-content">
+          <h4>Seamless Installation</h4>
+          <p>Certified engineers deploy CE/ISO certified products with minimal downtime, adhering strictly to safety standards.</p>
+        </div>
+      </div>
+      <div class="proc-step" onclick="switchScene(4)">
+        <div class="proc-num">04</div>
+        <div class="proc-content">
+          <h4>Commissioning &amp; Handover</h4>
+          <p>Thorough testing, grid-sync, and final approvals. We provide you with comprehensive operational training and SCADA access.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Perspective Scene Viewer -->
+    <div class="process-viewer">
+      <div class="scene-stage">
+        <!-- Scene 1: Consultation -->
+        <div class="scene active" id="scene-1">
+          <div class="scene-layer base-plate"></div>
+          <div class="scene-layer float-1">
+            <svg viewBox="0 0 100 100" fill="none"><rect x="25" y="20" width="50" height="60" rx="4" fill="rgba(0,180,216,0.1)" stroke="#00B4D8" stroke-width="2"/><line x1="40" y1="35" x2="60" y2="35" stroke="#00B4D8" stroke-width="2"/><line x1="40" y1="45" x2="60" y2="45" stroke="#00B4D8" stroke-width="2"/><line x1="40" y1="55" x2="50" y2="55" stroke="#00B4D8" stroke-width="2"/><circle cx="65" cy="70" r="10" fill="#0A0E1A" stroke="#2ECC71" stroke-width="2"/><path d="M60 70 L64 74 L70 65" stroke="#2ECC71" stroke-width="2"/></svg>
+          </div>
+          <div class="scene-layer text-overlay">Site Assessment Complete</div>
+        </div>
+
+        <!-- Scene 2: Engineering -->
+        <div class="scene" id="scene-2">
+          <div class="scene-layer base-plate"></div>
+          <div class="scene-layer float-1">
+           <svg viewBox="0 0 100 100" fill="none"><path d="M10 50 L50 20 L90 50" fill="none" stroke="#F5A623" stroke-width="2" stroke-dasharray="2 2"/><rect x="30" y="40" width="40" height="30" rx="2" fill="rgba(245,166,35,0.15)" stroke="#F5A623" stroke-width="2"/><line x1="40" y1="50" x2="60" y2="50" stroke="#F5A623" stroke-width="1.5"/><circle cx="50" cy="50" r="2" fill="#F5A623"/><path d="M35 80 L65 80" stroke="#F5A623" stroke-width="2"/></svg>
+          </div>
+          <div class="scene-layer float-2">
+            <svg viewBox="0 0 100 100" fill="none"><rect x="15" y="15" width="20" height="20" rx="1" fill="none" stroke="#2ECC71" stroke-width="2"/><rect x="65" y="65" width="20" height="20" rx="1" fill="none" stroke="#2ECC71" stroke-width="2"/><path d="M35 25 L65 25 L65 75" fill="none" stroke="#00B4D8" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
+          </div>
+          <div class="scene-layer text-overlay" style="color:var(--sun);">3D Modeling & CAD Flow</div>
+        </div>
+
+        <!-- Scene 3: Installation -->
+        <div class="scene" id="scene-3">
+          <div class="scene-layer base-plate"></div>
+          <div class="scene-layer float-1">
+            <svg viewBox="0 0 100 100" fill="none"><path d="M20 70 L20 40 L80 40 L80 70" fill="none" stroke="#C77DFF" stroke-width="2"/><rect x="25" y="45" width="10" height="40" fill="rgba(199,125,255,0.2)" stroke="#C77DFF" stroke-width="1.5"/><rect x="65" y="45" width="10" height="40" fill="rgba(199,125,255,0.2)" stroke="#C77DFF" stroke-width="1.5"/><line x1="35" y1="65" x2="65" y2="65" stroke="#C77DFF" stroke-width="1.5"/></svg>
+          </div>
+          <div class="scene-layer float-top">
+            <svg viewBox="0 0 100 100" fill="none"><rect x="20" y="30" width="60" height="15" rx="2" fill="#0A0E1A" stroke="#00B4D8" stroke-width="2"/><line x1="40" y1="30" x2="40" y2="45" stroke="#00B4D8" stroke-width="1.5"/><line x1="60" y1="30" x2="60" y2="45" stroke="#00B4D8" stroke-width="1.5"/></svg>
+          </div>
+          <div class="scene-layer text-overlay" style="color:var(--trading-light);">Electrical Panels Deployed</div>
+        </div>
+
+        <!-- Scene 4: Commissioning -->
+        <div class="scene" id="scene-4">
+          <div class="scene-layer base-plate" style="border-color:#2ECC71;box-shadow:inset 0 0 30px rgba(46,204,113,0.1);"></div>
+          <div class="scene-layer float-1">
+            <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" stroke="rgba(46,204,113,0.3)" stroke-width="2"/><circle cx="50" cy="50" r="20" stroke="rgba(46,204,113,0.6)" stroke-width="2"/><circle cx="50" cy="50" r="8" fill="#2ECC71"/></svg>
+          </div>
+          <div class="scene-layer pulse-ring"></div>
+          <div class="scene-layer text-overlay" style="color:var(--solar-light);">System Online. Quality Check HQ.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ████ WHY US ████ -->
 <section id="why">
   <div style="text-align:center; max-width:600px; margin:0 auto 3rem;">
-    <div class="section-tag" data-r="up" style="justify-content:center;">Why Choose Us</div>
-    <h2 class="section-title" data-r="up">The <span class="accent">Sivayam</span> Advantage</h2>
+    <div class="section-tag" style="justify-content:center;">Why Choose Us</div>
+    <h2 class="section-title reveal">The <span class="accent">Sivayam</span> Advantage</h2>
     <p class="section-sub" style="margin:0 auto;">We combine engineering expertise, quality products, and dedicated service to deliver outcomes that last.</p>
   </div>
 
-  
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;margin-bottom:2.5rem;" data-r="tilt">
-  <div class="why-step" style="background:#111927;padding:2rem 1.6rem;cursor:default;">
-    <div class="ws-num">STEP 01</div>
-    <div class="ws-icon">📋</div>
-    <div class="ws-title">Survey &amp; Design</div>
-    <div class="ws-text">Free site feasibility study, energy audit, and detailed system design with financial modeling.</div>
-  </div>
-  <div class="why-step" style="background:#111927;padding:2rem 1.6rem;cursor:default;">
-    <div class="ws-num">STEP 02</div>
-    <div class="ws-icon">📝</div>
-    <div class="ws-title">Proposal &amp; Approvals</div>
-    <div class="ws-text">Techno-commercial proposal, net metering paperwork, and all regulatory clearances handled.</div>
-  </div>
-  <div class="why-step" style="background:#111927;padding:2rem 1.6rem;cursor:default;">
-    <div class="ws-num">STEP 03</div>
-    <div class="ws-icon">⚙️</div>
-    <div class="ws-title">Install &amp; Commission</div>
-    <div class="ws-text">Precision installation by certified engineers — rigorous commissioning and safety testing.</div>
-  </div>
-  <div class="why-step" style="background:#111927;padding:2rem 1.6rem;cursor:default;">
-    <div class="ws-num">STEP 04</div>
-    <div class="ws-icon">📊</div>
-    <div class="ws-title">Monitor &amp; Maintain</div>
-    <div class="ws-text">SCADA remote monitoring, annual AMC, and 24×7 emergency response for total peace of mind.</div>
-  </div>
-</div>
-
-<div class="why-grid">
+  <div class="why-grid">
     <div class="why-card reveal">
       <div class="why-icon">⚡</div>
       <h3>Turnkey Solutions</h3>
@@ -1955,19 +1856,17 @@ body::after {
 
 <div class="divider"></div>
 
-
-<div class="s-divider"></div>
 <!-- ████ CONTACT ████ -->
 <section id="contact">
-  <div class="section-tag" data-r="up">Get in Touch</div>
-  <h2 class="section-title" data-r="up">Request a <span class="accent">Free Quote</span></h2>
+  <div class="section-tag">Get in Touch</div>
+  <h2 class="section-title reveal">Request a <span class="accent">Free Quote</span></h2>
 
   <div class="contact-grid">
     <div class="contact-info reveal">
       <h3>Let's Power Your Future</h3>
       <p>Whether you're looking to install solar, upgrade your electrical infrastructure, or source quality equipment — our team is ready to provide the right solution at the right price.</p>
 
-      <div class="contact-item" style="cursor:default;">
+      <div class="contact-item">
         <div class="contact-dot">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
@@ -1976,7 +1875,7 @@ body::after {
           <span>Sivayam Group, Coimbatore – 641018, Tamil Nadu, India</span>
         </div>
       </div>
-      <div class="contact-item" style="cursor:default;">
+      <div class="contact-item">
         <div class="contact-dot">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.22 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
@@ -1985,7 +1884,7 @@ body::after {
           <span>+91 98765 43210 &nbsp;|&nbsp; +91 87654 32109</span>
         </div>
       </div>
-      <div class="contact-item" style="cursor:default;">
+      <div class="contact-item">
         <div class="contact-dot">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
@@ -1994,7 +1893,7 @@ body::after {
           <span>info@sivayamgroup.com &nbsp;|&nbsp; solar@sivayamgroup.com</span>
         </div>
       </div>
-      <div class="contact-item" style="cursor:default;">
+      <div class="contact-item">
         <div class="contact-dot">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
@@ -2026,24 +1925,24 @@ body::after {
         📋 Quick Enquiry Form
       </div>
       <div class="form-row">
-        <div class="form-group f-wrap">
+        <div class="form-group">
           <label>Your Name *</label>
           <input type="text" placeholder="Full name">
         </div>
-        <div class="form-group f-wrap">
+        <div class="form-group">
           <label>Phone Number *</label>
           <input type="tel" placeholder="+91 XXXXX XXXXX">
         </div>
       </div>
-      <div class="form-group f-wrap">
+      <div class="form-group">
         <label>Email Address</label>
         <input type="email" placeholder="you@company.com">
       </div>
-      <div class="form-group f-wrap">
+      <div class="form-group">
         <label>Company / Organisation</label>
         <input type="text" placeholder="Company name">
       </div>
-      <div class="form-group f-wrap">
+      <div class="form-group">
         <label>Service Required *</label>
         <select>
           <option value="">— Select Service —</option>
@@ -2066,16 +1965,16 @@ body::after {
         </select>
       </div>
       <div class="form-row">
-        <div class="form-group f-wrap">
+        <div class="form-group">
           <label>Location / District</label>
           <input type="text" placeholder="e.g. Coimbatore">
         </div>
-        <div class="form-group f-wrap">
+        <div class="form-group">
           <label>Requirement (KW/KVA/HP)</label>
           <input type="text" placeholder="e.g. 50 KWp">
         </div>
       </div>
-      <div class="form-group f-wrap">
+      <div class="form-group">
         <label>Message / Requirements</label>
         <textarea placeholder="Describe your project or requirements in detail..."></textarea>
       </div>
@@ -2209,142 +2108,21 @@ window.addEventListener('scroll', () => {
     a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--sun)' : '';
   });
 });
-</script>
-
-<script>
-// ══ CUSTOM CURSOR ══
-const cDot = document.getElementById('cur-dot');
-const cRing = document.getElementById('cur-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  cDot.style.left=mx+'px'; cDot.style.top=my+'px';
-},{passive:true});
-(function raf(){
-  rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1;
-  cRing.style.left=rx+'px'; cRing.style.top=ry+'px';
-  requestAnimationFrame(raf);
-})();
-document.querySelectorAll('a,button,.service-card,.product-card,.project-card,.cert-card,.why-card,.why-step,.step-item,.contact-item,.area-chip,.tag,.pf-btn').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('c-hover'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('c-hover'));
-});
-
-// ══ NAVBAR SCROLL ══
-const nav = document.querySelector('nav');
-window.addEventListener('scroll',()=>{
-  const y = window.scrollY;
-  nav.style.background = y>50 ? 'rgba(7,12,24,0.9)' : 'rgba(7,12,24,0)';
-  nav.style.backdropFilter = y>50 ? 'blur(24px) saturate(1.5)' : 'none';
-  nav.style.boxShadow = y>50 ? '0 1px 0 rgba(255,255,255,0.05),0 8px 40px rgba(0,0,0,0.35)' : 'none';
-  // progress
-  const pct = (y/(document.body.scrollHeight-innerHeight))*100;
-  document.getElementById('s-prog-fill').style.width=pct+'%';
-  updateDots(); updateNavHL();
-},{passive:true});
-
-// ══ SCENE DOTS ══
-const SCENES=['home','about','energy','trading','projects','why','contact'];
-function updateDots(){
-  const y = scrollY+innerHeight/3;
-  let cur='home';
-  SCENES.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=y)cur=id;});
-  document.querySelectorAll('.s-dot').forEach((d,i)=>d.classList.toggle('active',SCENES[i]===cur));
-}
-function sceneGo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
-
-// ══ NAV HIGHLIGHT ══
-const navAs = document.querySelectorAll('.nav-links a:not(.nav-cta)');
-function updateNavHL(){
-  const y=scrollY+90; let cur='';
-  SCENES.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=y)cur=id;});
-  navAs.forEach(a=>a.classList.toggle('nav-active',a.getAttribute('href')==='#'+cur));
-}
-
-// ══ SCROLL REVEAL ══
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const d=+(e.target.dataset.d||0)*90;
-      setTimeout(()=>e.target.classList.add('vis'),d);
-    }
+// Scene Switcher (Process Section)
+function switchScene(index) {
+  const steps = document.querySelectorAll('.proc-step');
+  const scenes = document.querySelectorAll('.scene');
+  
+  steps.forEach((s, i) => {
+    if (i === index - 1) s.classList.add('active');
+    else s.classList.remove('active');
   });
-},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('[data-r]').forEach(el=>obs.observe(el));
 
-// ══ COUNTER ANIMATION ══
-const cntObs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting && !e.target._counted){
-      e.target._counted=true;
-      const target=+e.target.dataset.count, suf=e.target.dataset.suffix||'+';
-      let cur=0; const step=target/55;
-      const t=setInterval(()=>{cur=Math.min(cur+step,target);e.target.textContent=Math.round(cur)+suf;if(cur>=target)clearInterval(t);},20);
-    }
+  scenes.forEach((s, i) => {
+    if (i === index - 1) s.classList.add('active');
+    else s.classList.remove('active');
   });
-},{threshold:0.6});
-document.querySelectorAll('[data-count]').forEach(el=>cntObs.observe(el));
-
-// ══ SPOTLIGHT on service cards ══
-document.querySelectorAll('.service-card').forEach(c=>{
-  c.addEventListener('mousemove',e=>{
-    const r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
-    c.style.setProperty('--my',(e.clientY-r.top)+'px');
-  });
-});
-
-// ══ PERSPECTIVE TILT on solar showcase ══
-const ss = document.querySelector('.solar-showcase');
-const ssi = ss?.querySelector('.solar-showcase .solar-showcase > *') || ss?.firstElementChild?.firstElementChild;
-if(ss){
-  ss.addEventListener('mousemove',e=>{
-    const r=ss.getBoundingClientRect();
-    const px=((e.clientX-r.left)/r.width-0.5)*5;
-    const py=((e.clientY-r.top)/r.height-0.5)*-3;
-    const inner=ss.querySelector('div > div') || ss.querySelector('[class*="grid"]') || ss.children[0];
-    if(inner) inner.style.transform=`perspective(1100px) rotateY(${px}deg) rotateX(${py}deg)`;
-  });
-  ss.addEventListener('mouseleave',()=>{
-    const inner=ss.querySelector('div > div') || ss.children[0];
-    if(inner) inner.style.transform='';
-  });
-}
-
-// ══ PROJECT FILTER ══
-function filterP(cat,btn){
-  document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('#projGrid .project-card').forEach(c=>{
-    const show=cat==='all'||c.dataset.cat===cat;
-    c.style.transition='opacity 0.4s, transform 0.4s';
-    c.style.opacity=show?'1':'0';
-    c.style.transform=show?'':'scale(0.92)';
-    c.style.pointerEvents=show?'':'none';
-  });
-}
-
-// ══ MOBILE MENU ══
-document.getElementById('hamburger')?.addEventListener('click',function(){
-  this.classList.toggle('open');
-  document.getElementById('mobileMenu')?.classList.toggle('open');
-});
-function closeMenu(){
-  document.getElementById('hamburger')?.classList.remove('open');
-  document.getElementById('mobileMenu')?.classList.remove('open');
-}
-
-// ══ FORM SUBMIT ══
-function handleSubmit(btn){
-  btn.textContent='Sending…'; btn.disabled=true; btn.style.opacity='0.8';
-  setTimeout(()=>{
-    btn.textContent='✓ Sent! We'll respond within 2 hours.';
-    btn.style.background='linear-gradient(135deg,#1DB954,#15a047)';
-    btn.style.opacity='1';
-  },1100);
 }
 </script>
-
 </body>
 </html>
-
